@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stellar Blogs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css?v=20260406-7">
+</head>
+
+<body class="dark-mode">
+    <div class="top-banner">
+        <span>Practical stories, experiments, and media from your blog community.</span>
+        <a href="#postsSection">Explore Posts <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <header class="site-header">
+        <a href="#homeSection" class="brand" id="navHome">
+            <span class="brand-mark"><i class="fa-solid fa-bolt"></i></span>
+            <span class="brand-name">Stellar Blogs</span>
+        </a>
+
+        <nav class="site-nav">
+            <a href="#homeSection" class="nav-item active">Home</a>
+            <a href="#categorySection" class="nav-item">Categories</a>
+            <a href="#postsSection" class="nav-item">Posts</a>
+            <a href="#resourcesSection" class="nav-item">Resources</a>
+        </nav>
+
+        <div class="header-actions">
+            <span class="user-state" id="userStateBadge">Checking session...</span>
+            <button class="ghost-button hide" id="adminPanelBtn" type="button">Admin Panel</button>
+            <button class="icon-button" id="darkModeToggle" aria-label="Toggle theme">
+                <i class="fa-solid fa-moon moon-icon hide"></i>
+                <i class="fa-regular fa-sun sun-icon"></i>
+                <span class="theme-text">Light Mode</span>
+            </button>
+            <button class="primary-button" id="navCreate">Create Post</button>
+            <button class="ghost-button hide" id="logoutBtn" type="button">Log Out</button>
+        </div>
+    </header>
+
+    <main class="site-main">
+        <div id="homeView">
+        <section class="hero-section" id="homeSection">
+            <div class="hero-copy">
+                <span class="eyebrow">Your journey to tomorrow begins here</span>
+                <h1>Explore the frontiers of technology through blog posts.</h1>
+                <p>
+                    A simplified homepage inspired by your Figma references, powered by the content already inside
+                    your project.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <strong id="totalPostsCount">0</strong>
+                        <span>Total posts</span>
+                    </div>
+                    <div class="stat-card">
+                        <strong id="categoryCount">0</strong>
+                        <span>Categories</span>
+                    </div>
+                    <div class="stat-card">
+                        <strong id="mediaCount">0</strong>
+                        <span>Posts with media</span>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="spotlight-card" id="spotlightCard">
+                <span class="section-tag">Latest highlight</span>
+                <h2>No posts yet</h2>
+                <p>Your newest post will appear here.</p>
+            </aside>
+        </section>
+
+        <section class="section-block" id="categorySection">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag">Explore by category</span>
+                    <h2>Stellar Blog Features</h2>
+                </div>
+            </div>
+
+            <div class="category-grid" id="categoryOverview"></div>
+        </section>
+
+        <section class="section-block" id="postsSection">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag">Articles and updates</span>
+                    <h2>Explore In-Depth Blog Posts</h2>
+                </div>
+                <span class="section-note" id="activeFilterLabel">Showing all posts</span>
+            </div>
+
+            <div class="tabs-container">
+                <div class="nav-tabs" id="categoryTabs">
+                    <button class="tab-item active" data-category="all" type="button">All</button>
+                    <button class="tab-item" data-category="Tech" type="button">Tech</button>
+                    <button class="tab-item" data-category="Lifestyle" type="button">Lifestyle</button>
+                    <button class="tab-item" data-category="Travel" type="button">Travel</button>
+                </div>
+            </div>
+
+            <section class="feed-container" id="blogFeed"></section>
+        </section>
+
+        <section class="section-block" id="resourcesSection">
+            <div class="section-header">
+                <div>
+                    <span class="section-tag">Media and resources</span>
+                    <h2>Highlights From Posts With Images and Video</h2>
+                </div>
+            </div>
+
+            <div class="resource-grid" id="mediaShowcase"></div>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-mark"><i class="fa-solid fa-bolt"></i></div>
+            <div class="cta-copy">
+                <span class="section-tag">Join the conversation</span>
+                <h2>Be part of the Stellar Blogs community.</h2>
+                <p>Share a new post, browse categories, and keep the homepage focused on your existing content.</p>
+            </div>
+            <button class="primary-button" type="button" id="ctaCreateBtn">Create a Post</button>
+        </section>
+        </div>
+
+        <section class="detail-view hide" id="blogDetailView">
+            <div class="detail-hero" id="detailHero">
+                <div class="detail-hero-overlay">
+                    <button class="ghost-button detail-back-button" id="backToHomeBtn" type="button">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Back to Posts</span>
+                    </button>
+                    <span class="section-tag" id="detailHeroCategory">Technology</span>
+                    <h1 id="detailHeroTitle">Blog Post Title</h1>
+                    <div class="detail-hero-meta" id="detailHeroMeta"></div>
+                </div>
+            </div>
+
+            <section class="detail-topbar">
+                <div class="detail-topbar-segment detail-owner-actions hide" id="detailOwnerActions">
+                    <button class="ghost-button" id="detailEditBtn" type="button">
+                        <i class="fa-solid fa-pen"></i>
+                        <span>Edit Post</span>
+                    </button>
+                </div>
+
+                <div class="detail-topbar-segment detail-reactions">
+                    <span class="meta-pill"><i class="fa-solid fa-heart"></i> <span id="detailLikeCount">0</span></span>
+                    <span class="meta-pill"><i class="fa-regular fa-eye"></i> <span id="detailViewCount">0</span></span>
+                    <span class="meta-pill"><i class="fa-regular fa-paper-plane"></i> <span id="detailShareCount">0</span></span>
+                </div>
+
+                <div class="detail-topbar-segment detail-info-grid">
+                    <div>
+                        <span class="detail-label">Publication Date</span>
+                        <strong id="detailPublishDate">-</strong>
+                    </div>
+                    <div>
+                        <span class="detail-label">Category</span>
+                        <strong id="detailCategory">-</strong>
+                    </div>
+                    <div>
+                        <span class="detail-label">Reading Time</span>
+                        <strong id="detailReadingTime">-</strong>
+                    </div>
+                    <div>
+                        <span class="detail-label">Author Name</span>
+                        <strong id="detailAuthor">-</strong>
+                    </div>
+                </div>
+
+                <div class="detail-topbar-segment detail-toc">
+                    <span class="detail-label">Table of Contents</span>
+                    <ul id="detailToc"></ul>
+                </div>
+            </section>
+
+            <div class="detail-layout">
+                <article class="detail-article">
+                    <section class="detail-block">
+                        <span class="detail-heading-label">Introduction</span>
+                        <p id="detailIntroText">Select a post to read the full story.</p>
+                    </section>
+
+                    <div class="detail-section-list" id="detailSections"></div>
+                </article>
+            </div>
+
+            <section class="section-block detail-related-block">
+                <div class="section-header">
+                    <div>
+                        <span class="section-tag">Similar stories</span>
+                        <h2>Related Blog Posts</h2>
+                    </div>
+                    <button class="ghost-button" type="button" id="viewAllPostsBtn">View All Posts</button>
+                </div>
+
+                <div class="related-grid" id="relatedPosts"></div>
+            </section>
+
+            <section class="cta-section detail-cta">
+                <div class="cta-mark"><i class="fa-solid fa-bolt"></i></div>
+                <div class="cta-copy">
+                    <span class="section-tag">Learn, connect, and innovate</span>
+                    <h2>Be part of the Stellar Blogs community.</h2>
+                    <p>Explore more posts, continue browsing similar articles, and return to the main feed anytime.</p>
+                </div>
+                <button class="primary-button" type="button" id="detailCreateBtn">Create a Post</button>
+            </section>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div>
+            <strong>Stellar Blogs</strong>
+            <p>A cleaner homepage UI for your existing Spring blog project.</p>
+        </div>
+        <div class="footer-links">
+            <a href="#homeSection">Home</a>
+            <a href="#categorySection">Categories</a>
+            <a href="#postsSection">Posts</a>
+            <a href="#resourcesSection">Resources</a>
+        </div>
+    </footer>
+
+    <div class="auth-overlay" id="authGate">
+        <div class="auth-card">
+            <div class="auth-copy">
+                <span class="section-tag">Account access</span>
+                <h2>Sign in to create posts.</h2>
+                <p>
+                    Guests can browse everything on the homepage, but posting is available only for signed-in users.
+                </p>
+                <ul class="auth-points">
+                    <li>View all blog posts as a guest</li>
+                    <li>Create an account with email and password</li>
+                    <li>Sign in anytime to share a new post</li>
+                </ul>
+            </div>
+
+            <div class="auth-panel">
+                <div class="auth-mode-toggle">
+                    <button class="auth-mode-button active" id="loginModeBtn" type="button">Login</button>
+                    <button class="auth-mode-button" id="registerModeBtn" type="button">Register</button>
+                </div>
+
+                <form id="authForm" class="auth-form">
+                    <div class="form-group">
+                        <input type="email" id="authEmail" placeholder="Email address" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="authPassword" placeholder="Password" minlength="6" required>
+                    </div>
+                    <p class="auth-message" id="authMessage">Use your account to create posts, or continue as guest to browse.</p>
+                    <button class="primary-button auth-submit" id="authSubmitBtn" type="submit">Login</button>
+                </form>
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+                <button class="ghost-button auth-google-button" id="googleSignInBtn" type="button">
+                    <i class="fa-brands fa-google"></i>
+                    <span>Sign in with Google</span>
+                </button>
+
+                <button class="ghost-button auth-guest-button" id="continueGuestBtn" type="button">
+                    Continue as Guest
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay hide" id="createPostModal">
+        <div class="modal-content composer-modal-content">
+            <div class="modal-header">
+                <div>
+                    <span class="section-tag" id="postModalEyebrow">Compose post</span>
+                    <h2 id="postModalTitle">Create new post</h2>
+                </div>
+                <button class="close-modal" id="closeModalBtn" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createPostForm" class="post-form">
+                    <input type="hidden" id="editingPostId">
+                    <div class="form-group">
+                        <input type="text" id="postTitle" placeholder="Post Title" required>
+                    </div>
+                    <div class="form-group">
+                        <select id="postCategory" required>
+                            <option value="" disabled selected>Select Category</option>
+                            <option value="Tech">Tech</option>
+                            <option value="Lifestyle">Lifestyle</option>
+                            <option value="Travel">Travel</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="postSummary" placeholder="Opening paragraph / introduction">
+                    </div>
+
+                    <section class="editor-shell">
+                        <div class="editor-toolbar">
+                            <button class="btn-outline editor-add-button" id="addParagraphBlockBtn" type="button">
+                                <i class="fa-solid fa-align-left"></i>
+                                <span>Add Paragraph</span>
+                            </button>
+                            <button class="btn-outline editor-add-button" id="addImageBlockBtn" type="button">
+                                <i class="fa-regular fa-image"></i>
+                                <span>Add Inline Image</span>
+                            </button>
+                        </div>
+
+                        <div class="editor-blocks" id="editorBlocks"></div>
+                    </section>
+
+                    <div class="form-group media-upload-group">
+                        <div class="upload-btn-wrapper">
+                            <button type="button" class="btn-outline">
+                                <i class="fa-regular fa-image"></i>
+                                <span>Cover Image</span>
+                            </button>
+                            <input type="file" id="postImage" accept="image/*">
+                        </div>
+                        <div class="existing-media-note hide" id="currentCoverImageNote"></div>
+                    </div>
+
+                    <div class="form-group media-upload-group">
+                        <div class="upload-btn-wrapper">
+                            <button type="button" class="btn-outline">
+                                <i class="fa-solid fa-video"></i>
+                                <span>Top Video</span>
+                            </button>
+                            <input type="file" id="postVideo" accept="video/*">
+                        </div>
+                        <div class="existing-media-note hide" id="currentVideoNote"></div>
+                    </div>
+
+                    <div id="file-names" class="file-names"></div>
+                    <div class="modal-footer">
+                        <button type="submit" class="primary-button submit-button" id="submitBtn">
+                            <span class="submit-label">Share Post</span>
+                            <span class="spinner hide"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay hide" id="adminPanelModal">
+        <div class="modal-content admin-modal-content">
+            <div class="modal-header">
+                <div>
+                    <span class="section-tag">Admin controls</span>
+                    <h2>Manage accounts and content</h2>
+                </div>
+                <button class="close-modal" id="closeAdminModalBtn" aria-label="Close admin panel">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body admin-panel-body">
+                <p class="section-note" id="adminPanelMessage">
+                    Signed-in admins can remove user accounts and blog posts from here.
+                </p>
+
+                <section class="admin-section">
+                    <div class="section-header admin-section-header">
+                        <div>
+                            <span class="section-tag">Accounts</span>
+                            <h3>User management</h3>
+                        </div>
+                    </div>
+                    <div class="admin-list" id="adminUsersList"></div>
+                </section>
+
+                <section class="admin-section">
+                    <div class="section-header admin-section-header">
+                        <div>
+                            <span class="section-tag">Content</span>
+                            <h3>Post moderation</h3>
+                        </div>
+                    </div>
+                    <div class="admin-list" id="adminPostsList"></div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js?v=20260406-7"></script>
+</body>
+
+</html>
