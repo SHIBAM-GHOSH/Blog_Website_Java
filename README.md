@@ -49,14 +49,6 @@ Update these values in `src/main/resources/application.properties` if your local
 - `spring.datasource.username`
 - `spring.datasource.password`
 
-## Default Admin Account
-
-The app creates a default admin account from `application.properties`:
-
-- Email: `admin@stellarblogs.local`
-- Password: `Admin@12345`
-
-Change these values before using the project in a real environment.
 
 ## Run the Application
 
