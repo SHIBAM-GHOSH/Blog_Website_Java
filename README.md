@@ -25,14 +25,6 @@
 - Frontend static files: `src/main/resources/static`
 - App configuration: `src/main/resources/application.properties`
 
-## Prerequisites
-
-- JDK 25 installed
-- Maven installed and available in `PATH`
-- MySQL Server running locally
-- Internet connection for the first Maven dependency download
-
-
 
 ## Run the Application
 
