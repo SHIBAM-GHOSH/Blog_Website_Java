@@ -9,20 +9,15 @@
 - Spring Web MVC
 - Spring Data JPA
 - MySQL Connector/J
-- Jackson Databind
 - Maven
 - HTML, CSS, JavaScript
 
 ## Main Features
 
-- User registration and login with email and password
-- Guest mode for browsing posts without creating content
-- Admin account for removing posts and user accounts
-- Create blog posts with category, cover image, top video, and inline images between paragraphs
+- Create blog posts with simple text paragraph.
 - Edit your own posts
-- View posts on a dedicated blog open page with a news-style layout
 - Category-based homepage sections
-- Media upload support for images and videos
+
 
 ## Project Structure
 
@@ -37,17 +32,6 @@
 - MySQL Server running locally
 - Internet connection for the first Maven dependency download
 
-## Database Configuration
-
-The app uses this local MySQL database by default:
-
-- Database: `blogdb`
-- URL: `jdbc:mysql://localhost:3306/blogdb?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC`
-
-Update these values in `src/main/resources/application.properties` if your local setup is different:
-
-- `spring.datasource.username`
-- `spring.datasource.password`
 
 
 ## Run the Application
@@ -58,30 +42,11 @@ From the project folder:
 mvn spring-boot:run
 ```
 
-If port `8080` is already in use, run it on `8081`:
-
-```powershell
-mvn spring-boot:run "-Dspring-boot.run.arguments=--server.port=8081"
-```
 
 ## Application URL
 
 - Frontend: `http://localhost:8080`
-- Or `http://localhost:8081` if you start it on port `8081`
 
-## Important API Endpoints
-
-- `GET /api/blogs` -> get all blog posts
-- `GET /api/blogs/{id}` -> get a single blog post
-- `POST /api/blogs` -> create a post
-- `PUT /api/blogs/{id}` -> edit a post
-- `GET /api/auth/session` -> get current login session
-- `POST /api/auth/register` -> register a user
-- `POST /api/auth/login` -> log in
-- `POST /api/auth/logout` -> log out
-- `GET /api/admin/users` -> admin user list
-- `DELETE /api/admin/users/{id}` -> admin delete user
-- `DELETE /api/admin/blogs/{id}` -> admin delete post
 
 ## Build the Project
 
