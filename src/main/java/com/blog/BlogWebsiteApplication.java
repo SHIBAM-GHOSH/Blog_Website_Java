@@ -8,6 +8,6 @@ public class BlogWebsiteApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BlogWebsiteApplication.class, args);
-	}
+	}	//springapplication will run th blog website app
 
 }
